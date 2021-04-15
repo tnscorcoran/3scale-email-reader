@@ -1,0 +1,11 @@
+app/threescale/Java3scaleApiController.class
+app/Application.class
+app/greeting/Greeting.class
+app/threescale/UserRequest.class
+app/flights/Flight.class
+app/threescale/User.class
+app/threescale/Users.class
+app/GenericResult.class
+app/flights/FlightsController.class
+app/greeting/GreetingController.class
+app/SwaggerConfig.class

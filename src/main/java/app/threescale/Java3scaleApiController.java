@@ -40,6 +40,7 @@ public class Java3scaleApiController {
 			, @RequestParam("accesstoken") String accesstoken
 			, @RequestParam("accountid") String accountid
 			, @RequestParam("threscalehost") String threscalehost
+			, @RequestParam("servicename") String servicename
 			) throws Exception {
         
 
@@ -48,18 +49,14 @@ public class Java3scaleApiController {
 				THREESCALE_HOST=threscalehost;
   	  	
     	//String jason = getFile("_applications-json.txt");
-		List <String> jason = getUsersJson();
-    	
-
-    	
-    	
-    	
+		List <String> jason = getUsersJson(servicename);
+	
        
         
     	return jason;
     }
     
-    private List <String> getUsersJson() throws Exception{
+    private List <String> getUsersJson(String servicename) throws Exception{
     	String URL = THREESCALE_HOST+"/admin/api/accounts/"+ACCOUNT_ID+"/users.json?access_token="+ACCESS_TOKEN;
 
 		providers = new ArrayList<Object>();
@@ -83,7 +80,7 @@ public class Java3scaleApiController {
 
 		for (User user: users.getUsers()){
 			String email = (String) user.getUser().get("email");
-			sendEmail (email);
+			sendEmail (email, servicename);
 			emails.add(email);
 		}
 
@@ -92,8 +89,8 @@ public class Java3scaleApiController {
     	return emails;
     }
     
-	private String sendEmail(String email){
-		String s = "Sending email to "+email;
+	private String sendEmail(String email, String servicename){
+		String s = "Sending email to "+email+", with service name "+servicename;
 		System.out.println(s);
 		return s;
 	}
